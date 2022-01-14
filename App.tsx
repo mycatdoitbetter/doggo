@@ -1,20 +1,36 @@
+import * as React from 'react';
+import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ThemeProvider } from 'react-native-magnus';
 
-export default function App() {
+import { 
+  useFonts, 
+  Montserrat_400Regular as MontserratRegular,
+  Montserrat_500Medium as MontserratMedium,
+  Montserrat_600SemiBold as MontserratSemiBold,
+  Montserrat_700Bold as MontserratBold,
+} from '@expo-google-fonts/montserrat';
+
+import { Routes } from './src/routes';
+
+
+const App = () => {
+
+  let [fontsLoaded] = useFonts({
+    MontserratRegular,
+    MontserratMedium,
+    MontserratSemiBold,
+    MontserratBold
+  });
+
+  if (!fontsLoaded)  return <AppLoading />;
+
   return (
-    <View style={styles.container}>
-      <Text>Wellcome to Doggo!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider>
+      <StatusBar backgroundColor='auto'/>
+      <Routes />
+    </ThemeProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
