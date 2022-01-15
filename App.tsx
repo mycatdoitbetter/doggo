@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
-import { ThemeProvider } from 'react-native-magnus';
 
 import { 
   useFonts, 
@@ -26,10 +25,10 @@ const App = () => {
   if (!fontsLoaded)  return <AppLoading />;
 
   return (
-    <ThemeProvider>
+    <>
       <StatusBar backgroundColor='auto'/>
       <Routes />
-    </ThemeProvider>
+    </>
   );
 }
 
